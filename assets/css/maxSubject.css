@@ -1,5 +1,11 @@
 #maxSubject {
     padding: 0 28px;
+    padding-bottom: 32px;  /* This value should match the navbar padding */
+}
+
+#maxSubject hr {
+    background-color: rgb(196, 196, 196);
+    border: none;
 }
 
 /* --- The Subject --- */
@@ -9,30 +15,27 @@
     margin-bottom: 18px;
 }
 
-#maxSubject .subject .unchecked {
-    display: flex;
-    flex-flow: column;
-}
-
 #maxSubject .subject span {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: top;
 }
 
 #maxSubject .subject span:not(:last-child) {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 #maxSubject .subject input {
     min-width: 22px;
     min-height: 22px;
+    margin: 0;
 }
 
 #maxSubject .subject label {
     width: 100%;
     font-size: 16px;
     font-family: var(--secondaryFont);
+    line-height: 1.5;
     margin: 0 6px;
 }
 
