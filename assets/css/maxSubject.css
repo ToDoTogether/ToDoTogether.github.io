@@ -1,8 +1,45 @@
+#maxSubject {
+    padding: 0 28px;
+}
+
+/* --- The Subject --- */
+#maxSubject .subject h2 {
+    font-size: 24px;
+    margin-bottom: 18px;
+}
+
+#maxSubject .subject .unchecked {
+    display: flex;
+    flex-flow: column;
+}
+
+#maxSubject .subject span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#maxSubject .subject span:not(:last-child) {
+    margin-bottom: 8px;
+}
+
+#maxSubject .subject input {
+    min-width: 22px;
+    min-height: 22px;
+}
+
+#maxSubject .subject label {
+    width: 100%;
+    font-size: 16px;
+    margin: 0 6px;
+}
+
+/* --- Navigation Bar --- */
 #maxSubjectNavbar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 32px 28px;
+    padding: 32px 0;
 }
 
 #maxSubjectNavbar span {
