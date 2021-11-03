@@ -4,7 +4,7 @@
     --secondaryColor: rgb(0, 165, 55);
 
     /* Button to add new subjects */
-    --size_btn_addNewSubject: 72px;
-    --size_btn_addNewSubject_icon: 48px;
-    --margin_btn_addNewSubject: 16px;
+    --size_addSubjectBtn: 72px;
+    --size_addSubjectBtnIcon: 48px;
+    --margin_addSubjectBtn: 16px;
 }

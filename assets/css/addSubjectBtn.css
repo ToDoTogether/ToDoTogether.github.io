@@ -1,0 +1,15 @@
+#addSubjectBtn {
+    position: fixed;
+    font-size: var(--size_addSubjectBtn);
+    color: var(--primaryColor);
+    bottom: var(--margin_addSubjectBtn);
+    right: var(--margin_addSubjectBtn);
+}
+
+#addSubjectBtnIcon {
+    position: absolute;
+    font-size: var(--size_addSubjectBtnIcon);
+    color: var(--secondaryColor);
+    bottom: calc((var(--size_addSubjectBtn) - var(--size_addSubjectBtnIcon)) / 2);
+    right: calc((var(--size_addSubjectBtn) - var(--size_addSubjectBtnIcon)) / 2);
+}
