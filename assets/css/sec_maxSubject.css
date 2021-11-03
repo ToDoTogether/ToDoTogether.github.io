@@ -1,0 +1,14 @@
+#sec_maxSubject_navigationBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 28px;
+}
+
+#sec_maxSubject_navigationBar span {
+    font-size: 30px;
+}
+
+#sec_maxSubject_navigationBar div:last-child span:not(:last-child) {
+    margin-right: 8px;
+}
