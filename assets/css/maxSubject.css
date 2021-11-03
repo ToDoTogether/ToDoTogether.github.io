@@ -5,6 +5,7 @@
 /* --- The Subject --- */
 #maxSubject .subject h2 {
     font-size: 24px;
+    font-family: var(--primaryFont);
     margin-bottom: 18px;
 }
 
@@ -31,6 +32,7 @@
 #maxSubject .subject label {
     width: 100%;
     font-size: 16px;
+    font-family: var(--secondaryFont);
     margin: 0 6px;
 }
 

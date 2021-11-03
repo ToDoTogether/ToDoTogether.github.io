@@ -1,7 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 :root {
     /* Color Palette */
     --primaryColor: rgb(20, 20, 20);
     --secondaryColor: rgb(201, 201, 201);
+
+    /* Fonts */
+    --primaryFont: 'Space Grotesk', sans-serif;
+    --secondaryFont: 'Montserrat', sans-serif;
 
     /* Button to add new subjects */
     --size_addSubjectBtn: 72px;
