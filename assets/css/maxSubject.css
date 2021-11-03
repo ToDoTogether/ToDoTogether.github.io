@@ -3,6 +3,10 @@
     padding-bottom: 32px;  /* This value should match the navbar padding */
 }
 
+#maxSubject .subject h4 {
+    display: none;
+}
+
 #maxSubject hr {
     background-color: rgb(196, 196, 196);
     border: none;
