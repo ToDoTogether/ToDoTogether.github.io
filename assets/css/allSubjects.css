@@ -14,6 +14,7 @@
     box-shadow: 1px 1px 3px #aaa;
     padding: 18px 24px;
     margin: 0 32px;
+    background-color: #efefef;
 }
 
 #allSubjects .subject:not(:last-child) {
@@ -23,4 +24,11 @@
 #allSubjects .subject h2 {
     font-size: 24px;
     font-family: var(--primaryFont);
+    margin-bottom: 8px;
+}
+
+#allSubjects .subject h4 {
+    font-size: 12px;
+    font-family: var(--secondaryFont);
+    padding-left: 2px;
 }
