@@ -1,0 +1,26 @@
+#allSubjects .subject .unchecked,
+#allSubjects .subject .checked,
+#allSubjects .subject hr {
+    display: none;
+}
+
+#allSubjects {
+    padding: 36px 0;
+}
+
+#allSubjects .subject {
+    border: 1px solid black;
+    border-radius: 7px;
+    box-shadow: 1px 1px 3px #aaa;
+    padding: 18px 24px;
+    margin: 0 32px;
+}
+
+#allSubjects .subject:not(:last-child) {
+    margin-bottom: 24px;
+}
+
+#allSubjects .subject h2 {
+    font-size: 24px;
+    font-family: var(--primaryFont);
+}
