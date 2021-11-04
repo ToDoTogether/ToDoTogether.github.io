@@ -21,9 +21,10 @@ function bindOnClickToButtons() {
 
     // Bind save function to goBack button
     $("#goBackBtn").on("click", function() {
+        let checkedCount = $("#maxSubject .checked").children("span").length;
+        let uncheckedCount = $("#maxSubject .unchecked").children("span").length;
+
         // Update the stats for the subject
-        checkedCount = $("#maxSubject .checked").children("span").length;
-        uncheckedCount = $("#maxSubject .unchecked").children("span").length;
         let newText = `Erledigt: ${checkedCount} | Ausstehend: ${uncheckedCount}`;
         $("#maxSubject .subject h4").text(newText);
 

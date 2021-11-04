@@ -37,7 +37,7 @@ function createSubject() {
     let checkbox = createCheckbox(hr);
 
     // Append the elements in the correct order
-    $(divUnchecked).append(checkbox1);
+    $(divUnchecked).append(checkbox);
     $(div).append(h2, h4, divUnchecked, hr, divChecked);
 
     return div;
@@ -81,7 +81,12 @@ function createCheckbox(hr) {
     let cross = document.createElement("i");
     $(cross).addClass("material-icons").text("close");
     $(cross).on("click", function() {
-        $(span).remove();
+        let checkedCount = $("#maxSubject .checked").children("span").length;
+        let uncheckedCount = $("#maxSubject .unchecked").children("span").length;
+
+        if (checkedCount + uncheckedCount > 1) {
+            $(span).remove();
+        }
     })
 
     // Put the elements together
@@ -91,9 +96,8 @@ function createCheckbox(hr) {
 }
 
 function checkStyleOfEntries(hr) {
-    // Get amount of checkboxes
-    checkedCount = $("#maxSubject .checked").children("span").length;
-    uncheckedCount = $("#maxSubject .unchecked").children("span").length;
+    let checkedCount = $("#maxSubject .checked").children("span").length;
+    let uncheckedCount = $("#maxSubject .unchecked").children("span").length;
 
     // Display the horizontal line only when at least one of both is checked
     if (checkedCount == 0 || uncheckedCount == 0) {
