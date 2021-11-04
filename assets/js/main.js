@@ -9,16 +9,14 @@ function hideElementsAtStart() {
 }
 
 function bindOnClickToButtons() {
-    // Bind function to toggle windows to the addSubject button in
-    // allSubjects and the goBack button in maxSubject
-    $("#addSubjectBtn, #goBackBtn").on("click", function() {
-        toggleWindows();
-    });
-
     // Bind function to create subject to addSubject button
     $("#addSubjectBtn").on("click", function() {
+        // Create subject and append it to max subject screen
         let subject = createSubject();
         $("#maxSubject").append(subject);
+
+        // Change the screens
+        toggleWindows();
     });
 
     // Bind save function to goBack button
@@ -44,7 +42,7 @@ function bindOnClickToButtons() {
             else {
                 // If edited subject is sub1, place it at top
                 if ($("#maxSubject .subject").attr("id") == "sub1") {
-                    $("#maxSubject .subject").prepend($("#allSubjects"));
+                    $("#maxSubject .subject").prependTo($("#allSubjects"));
                 }
                 // Otherwise, finde the correct position
                 else {
@@ -62,6 +60,8 @@ function bindOnClickToButtons() {
             $("#maxSubject .subject").remove();
             updateSubjectIDs();
         }
+        // Change the screens
+        toggleWindows();
     });
 }
 
