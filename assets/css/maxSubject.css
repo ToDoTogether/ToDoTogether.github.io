@@ -19,6 +19,12 @@
     margin-bottom: 18px;
 }
 
+#maxSubject .subject h2:empty::before {
+    content: attr(data-placeholder);
+    color: var(--disabledColor);
+}
+
+
 #maxSubject .subject span {
     display: flex;
     flex-direction: row;
@@ -40,6 +46,11 @@
     font-family: var(--secondaryFont);
     line-height: 1.5;
     margin: 0 6px;
+}
+
+#maxSubject .subject label:empty::before {
+    content: attr(data-placeholder);
+    color: var(--disabledColor);
 }
 
 /* --- Navigation Bar --- */

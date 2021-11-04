@@ -16,7 +16,8 @@ function createSubject() {
     })
 
     let h2 = document.createElement("h2");
-    $(h2).text("Titel").attr("contenteditable", "true");
+    $(h2).attr("contenteditable", "true");
+    $(h2).attr("data-placeholder", "Unbekannter Titel");
     $(h2).on("keydown", function(e) {
         // Prevent the user from hitting enter
         if (e.keyCode == 13) {
@@ -67,7 +68,7 @@ function createCheckbox(hr, checked) {
     }
 
     let label = document.createElement("label");
-    $(label).text("Eintrag");
+    $(label).attr("data-placeholder", "Eintrag");
     $(label).attr({
         for: "item",
         contenteditable: "true",
@@ -93,9 +94,9 @@ function createCheckbox(hr, checked) {
             let range = document.createRange();
             let sel = window.getSelection();
 
-            range.setStart(newCheckbox.childNodes[1], 1);
+            range.setStart(newCheckbox.childNodes[1], 0);
             range.collapse(true);
-        
+
             sel.removeAllRanges();
             sel.addRange(range);
         }
@@ -109,6 +110,7 @@ function createCheckbox(hr, checked) {
 
         if (checkedCount + uncheckedCount > 1) {
             $(span).remove();
+            checkStyleOfEntries(hr);
         }
     })
 

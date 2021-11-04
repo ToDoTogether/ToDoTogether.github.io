@@ -31,13 +31,12 @@ function bindOnClickToButtons() {
 
         // Get conditions for new subject to be not saved
         // CAUTION: values have to match the inital values in subject.js
-        let title = $("#maxSubject .subject h2").text() == "Titel";
-        let divUncheckedCount = $("#maxSubject .subject .unchecked").children().length == 1;
-        let divCheckedCount = $("#maxSubject .subject .checked").children().length == 0;
-        let initialEntry = $("#maxSubject .subject .unchecked").children("span").children("label").text() == "Eintrag";
-    
+        let title = $("#maxSubject .subject h2").text() == "";
+        let uncheckedEntries = $("#maxSubject .subject .unchecked").children("span").children("label").text() == "";
+        let checkedEntries = $("#maxSubject .subject .checked").children("span").children("label").text() == "";
+
         // Check if conditions are true
-        if (!(title && divUncheckedCount && divCheckedCount && initialEntry)) {
+        if (!(title && uncheckedEntries && checkedEntries)) {
             // Entry was modified. Place the subject at correct place
             // Get all subjects
             subjects = $("#allSubjects").children("div");

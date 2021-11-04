@@ -27,6 +27,11 @@
     margin-bottom: 8px;
 }
 
+#allSubjects .subject h2:empty::before {
+    content: attr(data-placeholder);
+    color: var(--disabledColor);
+}
+
 #allSubjects .subject h4 {
     font-size: 12px;
     font-family: var(--secondaryFont);

@@ -5,6 +5,7 @@
     /* Color Palette */
     --primaryColor: rgb(20, 20, 20);
     --secondaryColor: rgb(201, 201, 201);
+    --disabledColor: rgb(163, 163, 163);
 
     /* Fonts */
     --primaryFont: 'Space Grotesk', sans-serif;
