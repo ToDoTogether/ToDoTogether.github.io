@@ -78,12 +78,26 @@ function createCheckbox(hr, checked) {
         if (e.keyCode == 13) {
             e.preventDefault();
             
+            // Check wether the checkbox where enter was hit is checked
             checked = false;
             if (input.checked) {
                 checked = true;
             }
 
-            $(span).after(createCheckbox(hr, checked));
+            // Insert the new checkbox
+            let newCheckbox = createCheckbox(hr, checked);
+            $(span).after(newCheckbox);
+
+            // Set the cursor correctly
+            // CREDIT: https://stackoverflow.com/questions/6249095/how-to-set-the-caret-cursor-position-in-a-contenteditable-element-div
+            let range = document.createRange();
+            let sel = window.getSelection();
+
+            range.setStart(newCheckbox.childNodes[1], 1);
+            range.collapse(true);
+        
+            sel.removeAllRanges();
+            sel.addRange(range);
         }
     });
 
@@ -107,7 +121,7 @@ function createCheckbox(hr, checked) {
 function checkStyleOfEntries(hr) {
     let checkedCount = $("#maxSubject .checked").children("span").length;
     let uncheckedCount = $("#maxSubject .unchecked").children("span").length;
-    console.log(checkedCount, uncheckedCount);
+
     // Display the horizontal line only when at least one of both is checked
     if (checkedCount == 0 || uncheckedCount == 0) {
         $(hr).removeClass("show").addClass("hide");
