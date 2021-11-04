@@ -21,14 +21,6 @@ function bindOnClickToButtons() {
 
     // Bind save function to goBack button
     $("#goBackBtn").on("click", function() {
-        let checkedCount = $("#maxSubject .checked").children("span").length;
-        let uncheckedCount = $("#maxSubject .unchecked").children("span").length;
-
-        // Update the stats for the subject
-        let newText = `Erledigt: ${checkedCount} | Ausstehend: ${uncheckedCount}`;
-        $("#maxSubject .subject h4").text(newText);
-
-
         // Get conditions for new subject to be not saved
         // CAUTION: values have to match the inital values in subject.js
         let title = $("#maxSubject .subject h2").text() == "";
@@ -38,6 +30,20 @@ function bindOnClickToButtons() {
         // Check if conditions are true
         if (!(title && uncheckedEntries && checkedEntries)) {
             // Entry was modified. Place the subject at correct place
+
+            // Delete all empty checkboxes
+            $("#maxSubject .subject .unchecked, #maxSubject .subject .checked").children().each(function() {
+                if ($(this).children("label").text() == "") {
+                    $(this).remove();
+                }
+            });
+
+            // Update the stats for the subject
+            let checkedCount = $("#maxSubject .checked").children("span").length;
+            let uncheckedCount = $("#maxSubject .unchecked").children("span").length;
+            let newText = `Erledigt: ${checkedCount} | Ausstehend: ${uncheckedCount}`;
+            $("#maxSubject .subject h4").text(newText);
+
             // Get all subjects
             subjects = $("#allSubjects").children("div");
 
