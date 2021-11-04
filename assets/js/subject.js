@@ -34,7 +34,7 @@ function createSubject() {
     let divChecked = document.createElement("div");
     $(divChecked).addClass("checked");
 
-    let checkbox = createCheckbox(hr);
+    let checkbox = createCheckbox(hr, false);
 
     // Append the elements in the correct order
     $(divUnchecked).append(checkbox);
@@ -43,7 +43,7 @@ function createSubject() {
     return div;
 }
 
-function createCheckbox(hr) {
+function createCheckbox(hr, checked) {
     let span = document.createElement("span");
 
     let input = document.createElement("input");
@@ -62,6 +62,9 @@ function createCheckbox(hr) {
         // Check for styling updates
         checkStyleOfEntries(hr);
     });
+    if (checked) {
+        input.checked = true;
+    }
 
     let label = document.createElement("label");
     $(label).text("Eintrag");
@@ -71,10 +74,16 @@ function createCheckbox(hr) {
     });
     $(label).on("keydown", function(e) {
         // Prevent the user from hitting enter
+        // Create new checkbox instead
         if (e.keyCode == 13) {
             e.preventDefault();
-        } else {
-            // TODO: Create new checkbox?
+            
+            checked = false;
+            if (input.checked) {
+                checked = true;
+            }
+
+            $(span).after(createCheckbox(hr, checked));
         }
     });
 
@@ -98,7 +107,7 @@ function createCheckbox(hr) {
 function checkStyleOfEntries(hr) {
     let checkedCount = $("#maxSubject .checked").children("span").length;
     let uncheckedCount = $("#maxSubject .unchecked").children("span").length;
-
+    console.log(checkedCount, uncheckedCount);
     // Display the horizontal line only when at least one of both is checked
     if (checkedCount == 0 || uncheckedCount == 0) {
         $(hr).removeClass("show").addClass("hide");
