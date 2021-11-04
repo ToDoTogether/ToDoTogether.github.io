@@ -18,13 +18,13 @@ function createSubject() {
     let h2 = document.createElement("h2");
     $(h2).text("Titel").attr("contenteditable", "true");
     $(h2).on("keydown", function(e) {
+        // Prevent the user from hitting enter
         if (e.keyCode == 13) {
             e.preventDefault();
         }
     });
 
     let h4 = document.createElement("h4");
-    $(h4).text("Erledigt: 0 | Ausstehend: 0");
 
     let hr = document.createElement("hr");
     $(hr).addClass("hideHr");
@@ -35,10 +35,11 @@ function createSubject() {
     $(divChecked).addClass("checked");
 
     let checkbox1 = createCheckbox(hr);
-    let checkbox2 = createCheckbox(hr);
+    let checkbox2 = createCheckbox(hr);  // !! only while working
+    let checkbox3 = createCheckbox(hr);  // !! only while working
 
     // Append the elements in the correct order
-    $(divUnchecked).append(checkbox1, checkbox2);
+    $(divUnchecked).append(checkbox1, checkbox2, checkbox3);
     $(div).append(h2, h4, divUnchecked, hr, divChecked);
 
     return div;
@@ -65,7 +66,19 @@ function createCheckbox(hr) {
     });
 
     let label = document.createElement("label");
-    $(label).attr("for", "item").text("Eintrag");
+    $(label).text("Eintrag");
+    $(label).attr({
+        for: "item",
+        contenteditable: "true",
+    });
+    $(label).on("keydown", function(e) {
+        // Prevent the user from hitting enter
+        if (e.keyCode == 13) {
+            e.preventDefault();
+        } else {
+            // TODO: Create new checkbox?
+        }
+    });
 
     let cross = document.createElement("span");
     $(cross).addClass("material-icons").text("close");

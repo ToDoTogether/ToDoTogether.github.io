@@ -21,6 +21,13 @@ function bindOnClickToButtons() {
 
     // Bind save function to goBack button
     $("#goBackBtn").on("click", function() {
+        // Update the stats for the subject
+        checkedCount = $("#maxSubject .checked").children("span").length;
+        uncheckedCount = $("#maxSubject .unchecked").children("span").length;
+        let newText = `Erledigt: ${checkedCount} | Ausstehend: ${uncheckedCount}`;
+        $("#maxSubject .subject h4").text(newText);
+
+
         // Get conditions for new subject to be not saved
         // CAUTION: values have to match the inital values in subject.js
         let title = $("#maxSubject .subject h2").text() == "Titel";
@@ -60,6 +67,7 @@ function bindOnClickToButtons() {
             $("#maxSubject .subject").remove();
             updateSubjectIDs();
         }
+
         // Change the screens
         toggleWindows();
     });
