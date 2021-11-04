@@ -12,9 +12,6 @@
     border: none;
 }
 
-.hideHr {display: none;}
-.showHr {display: block;}
-
 /* --- The Subject --- */
 #maxSubject .subject h2 {
     font-size: 24px;
@@ -25,7 +22,6 @@
 #maxSubject .subject span {
     display: flex;
     flex-direction: row;
-    align-items: top;
 }
 
 #maxSubject .subject span:not(:last-child) {

@@ -27,19 +27,17 @@ function createSubject() {
     let h4 = document.createElement("h4");
 
     let hr = document.createElement("hr");
-    $(hr).addClass("hideHr");
+    $(hr).addClass("hide");
 
     let divUnchecked = document.createElement("div");
     $(divUnchecked).addClass("unchecked");
     let divChecked = document.createElement("div");
     $(divChecked).addClass("checked");
 
-    let checkbox1 = createCheckbox(hr);
-    let checkbox2 = createCheckbox(hr);  // !! only while working
-    let checkbox3 = createCheckbox(hr);  // !! only while working
+    let checkbox = createCheckbox(hr);
 
     // Append the elements in the correct order
-    $(divUnchecked).append(checkbox1, checkbox2, checkbox3);
+    $(divUnchecked).append(checkbox1);
     $(div).append(h2, h4, divUnchecked, hr, divChecked);
 
     return div;
@@ -80,8 +78,11 @@ function createCheckbox(hr) {
         }
     });
 
-    let cross = document.createElement("span");
+    let cross = document.createElement("i");
     $(cross).addClass("material-icons").text("close");
+    $(cross).on("click", function() {
+        $(span).remove();
+    })
 
     // Put the elements together
     $(span).append(input, label, cross);
@@ -96,8 +97,8 @@ function checkStyleOfEntries(hr) {
 
     // Display the horizontal line only when at least one of both is checked
     if (checkedCount == 0 || uncheckedCount == 0) {
-        $(hr).removeClass("showHr").addClass("hideHr");
+        $(hr).removeClass("show").addClass("hide");
     } else {
-        $(hr).removeClass("hideHr").addClass("showHr");
+        $(hr).removeClass("hide").addClass("show");
     }
 }

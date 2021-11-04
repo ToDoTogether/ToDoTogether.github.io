@@ -15,3 +15,6 @@
     --size_addSubjectBtnIcon: 48px;
     --margin_addSubjectBtn: 16px;
 }
+
+.hide {display: none;}
+.show {display: block;}
