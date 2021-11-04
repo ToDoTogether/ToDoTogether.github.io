@@ -1,7 +1,19 @@
+subjectCount = 0
+
 function createSubject() {
+    // Increase the subject count
+    subjectCount += 1;
+
     // Create all needed elements
     let div = document.createElement("div");
-    $(div).addClass("subject");
+    $(div).attr("id", `sub${subjectCount}`).addClass("subject");
+    $(div).on("click", function() {
+        // Check if allSubjects windows is shown
+        if ($("#maxSubject").css("display") == "none") {
+            toggleWindows();
+            $(div).appendTo($("#maxSubject"));
+        }
+    })
 
     let h2 = document.createElement("h2");
     $(h2).text("Titel").attr("contenteditable", "true");

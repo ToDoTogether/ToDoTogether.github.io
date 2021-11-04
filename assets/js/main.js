@@ -31,12 +31,36 @@ function bindOnClickToButtons() {
         let initialEntry = $("#maxSubject .subject .unchecked").children("span").children("label").text() == "Eintrag";
     
         // Check if conditions are true
-        if (!(title && divUncheckedCount && divUncheckedCount && initialEntry)) {
-            // Entry was modified
-            $("#maxSubject .subject").appendTo($("#allSubjects"));
+        if (!(title && divUncheckedCount && divCheckedCount && initialEntry)) {
+            // Entry was modified. Place the subject at correct place
+            // Get all subjects
+            subjects = $("#allSubjects").children("div");
+
+            // If there is no subject in allSubjects, just append it
+            if (subjectCount == 1) {
+                $("#maxSubject .subject").appendTo($("#allSubjects"));
+            } 
+            // Otherwise, check where the edited subject needs to go
+            else {
+                // If edited subject is sub1, place it at top
+                if ($("#maxSubject .subject").attr("id") == "sub1") {
+                    $("#maxSubject .subject").prepend($("#allSubjects"));
+                }
+                // Otherwise, finde the correct position
+                else {
+                    // Loop through the subjects and check their ids
+                    for (let i = 0; i < subjects.length; i++) {
+                        if ($(subjects[i]).attr("id") == `sub${$("#maxSubject .subject").attr("id")[3]-1}`) {
+                            $(subjects[i]).after($("#maxSubject .subject"));
+                            break;
+                        }
+                    }
+                }
+            }
         } else {
             // Delete unmodified entry
             $("#maxSubject .subject").remove();
+            updateSubjectIDs();
         }
     });
 }
@@ -50,6 +74,20 @@ function toggleWindows() {
     } else {
         $("#maxSubject").css("display", "none");
         $("#allSubjects").css("display", "block");
+    }
+}
+
+function updateSubjectIDs() {
+    // This function should be called every time a subject will be deleted
+    // so the order will still be correct
+    subjectCount -= 1;
+
+    // Iterate through all the subjects
+    counter = 1;
+    subjects = $("#allSubjects").children("div");
+    for (let i = 0; i < subjects.length; i++) {
+        $(subjects[i]).attr("id", `sub${counter}`);
+        counter += 1;
     }
 }
 
