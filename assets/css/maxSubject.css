@@ -12,6 +12,9 @@
     border: none;
 }
 
+.hideHr {display: none;}
+.showHr {display: block;}
+
 /* --- The Subject --- */
 #maxSubject .subject h2 {
     font-size: 24px;
