@@ -92,18 +92,16 @@ function bindOnClickToButtons() {
         toggleWindows();
     });
 
-    // Bind return function to maxSubject
-    $("#maxSubject").on("click", function(e) {
-        if (e.target.id == "changeColorBtn" && $("#colorPalette").css("display") == "none") {
-            $("#colorPalette").css("display", "flex");
-        }
-        else if ($("#colorPalette").css("display") == "flex") {
-            $("#colorPalette").css("display", "none");
-        }
+    // Bind functions to color palette
+    $("#changeColorBtn").on("click", function() {
+        $("#colorPalette").css("display", "block");
+    });
+    $("#exitColorPalette").on("click", function() {
+        $("#colorPalette").css("display", "none");
     });
 
     // Bind a function to every color in color palette
-    $("#colorPalette").children().on("click", function(e) {
+    $("#colors").children().on("click", function(e) {
         let color = $(e.target).css("color");
         $("#maxSubject").css("background-color", color);
         $("#maxSubject .subject").css("background-color", color);

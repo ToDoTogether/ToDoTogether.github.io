@@ -1,9 +1,14 @@
 #colorPalette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#colors {
     width: 100%;
     height: 80px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -11,9 +16,13 @@
     background-color: var(--primaryColor);
 }
 
-#colorPalette span {
+#colors span {
     font-size: 36px;
     padding: 0 6px;
+}
+
+#exitColorPalette {
+    height: calc(100% - 80px);  /* Should match height of color bar */
 }
 
 #colWhite {color: white;}
