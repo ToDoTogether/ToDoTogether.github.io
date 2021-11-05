@@ -4,8 +4,8 @@ function main() {
 }
 
 function hideElementsAtStart() {
-    // Hide the maxSubject section
-    $("#maxSubject").css("display", "none");
+    // Hide the maxSubject section and color palette
+    $("#maxSubject, #colorPalette").css("display", "none");
 }
 
 function bindOnClickToButtons() {
@@ -91,7 +91,25 @@ function bindOnClickToButtons() {
 
     // Bind function to color palette icon to change color of subject
     $("#changeColorBtn").on("click", function() {
-        console.log("color palette");
+        // Display the color palette
+        $("#colorPalette").css("display", "flex");
+
+        // Bind return function to maxSubject
+        setTimeout(function() {
+            $("#maxSubject").on("click", function() {
+                // Hide the color palette
+                $("#colorPalette").css("display", "none");
+
+                // Unbin click from maxSubject
+                $("#maxSubject").unbind("click");
+            });
+        }, 10);
+    });
+
+    // Bind a function to every color in color palette
+    $("#colorPalette").children().on("click", function(e) {
+        let color = $(e.target).css("color");
+        $("#maxSubject").css("background-color", color);
     });
 
     // Bind function to delete button to delete single subjects

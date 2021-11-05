@@ -52,7 +52,7 @@ function createCheckbox(hr, checked) {
         type: "checkbox",
         name: "item",
     });
-    $(input).on("change", function() {
+    $(input).on("change", function(e) {
         // Move the entry in the correct div
         if (input.checked) {
             $(span).appendTo($("#maxSubject .checked"));
@@ -107,7 +107,7 @@ function createCheckbox(hr, checked) {
 
     let cross = document.createElement("i");
     $(cross).addClass("material-icons").text("close");
-    $(cross).on("click", function() {
+    $(cross).on("click", function(e) {
         let checkedCount = $("#maxSubject .checked").children("span").length;
         let uncheckedCount = $("#maxSubject .unchecked").children("span").length;
 

@@ -17,5 +17,9 @@
     --margin_addSubjectBtn: 16px;
 }
 
+html, body {
+    height: 100%;
+}
+
 .hide {display: none;}
 .show {display: block;}

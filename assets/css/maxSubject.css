@@ -1,6 +1,6 @@
 #maxSubject {
+    min-height: 100%;
     padding: 0 28px;
-    padding-bottom: 32px;  /* This value should match the navbar padding */
 }
 
 #maxSubject .subject h4 {
@@ -13,6 +13,10 @@
 }
 
 /* --- The Subject --- */
+#maxSubject .subject {
+    padding-bottom: 32px;  /* Value should match navbar padding */
+}
+
 #maxSubject .subject h2 {
     font-size: 24px;
     font-family: var(--primaryFont);
@@ -23,7 +27,6 @@
     content: attr(data-placeholder);
     color: var(--disabledColor);
 }
-
 
 #maxSubject .subject span {
     display: flex;
