@@ -5,7 +5,7 @@ function main() {
 
 function hideElementsAtStart() {
     // Hide the maxSubject section and color palette
-    $("#maxSubject, #colorPalette").css("display", "none");
+    $("#maxSubject, #colorPalette, #deleteWarning").css("display", "none");
 }
 
 function bindOnClickToButtons() {

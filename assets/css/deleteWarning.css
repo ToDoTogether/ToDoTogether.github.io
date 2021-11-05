@@ -1,0 +1,36 @@
+#deleteWarning {
+    background-color: var(--primaryColor);
+    width: 280px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: fixed;
+    top: calc(50% - 50px - 16px);
+    left: calc(50% - 140px - 16px);
+    border-radius: 8px;
+    padding: 16px;
+}
+
+#deleteWarning h2 {
+    color: var(--secondaryColor);
+    font-family: var(--secondaryFont);
+}
+
+#deleteWarning span {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    height: 35px;
+}
+
+#deleteWarning span button {
+    width: 33%;
+    height: 100%;
+    font-family: var(--secondaryFont);
+    border-radius: 8px;
+}
+
+#deleteWarning span button:first-child {
+    margin-right: 16px;
+}
