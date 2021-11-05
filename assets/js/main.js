@@ -95,9 +95,11 @@ function bindOnClickToButtons() {
     // Bind functions to color palette
     $("#changeColorBtn").on("click", function() {
         $("#colorPalette").css("display", "block");
+        $("html, body").addClass("disableScroll");
     });
     $("#exitColorPalette").on("click", function() {
         $("#colorPalette").css("display", "none");
+        $("html, body").removeClass("disableScroll");
     });
 
     // Bind a function to every color in color palette
