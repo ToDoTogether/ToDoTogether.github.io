@@ -88,6 +88,16 @@ function bindOnClickToButtons() {
         // Change the screens
         toggleWindows();
     });
+
+    // Bind function to color palette icon to change color of subject
+    $("#changeColorBtn").on("click", function() {
+        console.log("color palette");
+    });
+
+    // Bind function to delete button to delete single subjects
+    $("#delSubjectBtn").on("click", function() {
+        console.log("delete subject");
+    });
 }
 
 function toggleWindows() {

@@ -89,6 +89,10 @@ function createCheckbox(hr, checked) {
             let newCheckbox = createCheckbox(hr, checked);
             $(span).after(newCheckbox);
 
+            // Scroll down (if necessary) to the checkbox
+            let coord = newCheckbox.getBoundingClientRect().bottom;
+            window.scrollTo(0, coord);
+
             // Set the cursor correctly
             // CREDIT: https://stackoverflow.com/questions/6249095/how-to-set-the-caret-cursor-position-in-a-contenteditable-element-div
             let range = document.createRange();
