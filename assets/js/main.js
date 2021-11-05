@@ -118,13 +118,20 @@ function bindOnClickToButtons() {
 
     // Bind function to delete button to delete single subjects
     $("#delSubjectBtn").on("click", function() {
-
         // Display the delete warning
         $("#deleteWarning").css("display", "flex");
+    });
 
-        // $("#maxSubject .subject").remove();
-        // updateSubjectIDs();
-        // toggleWindows();
+    // Bind function to the buttons in the delete warning
+    $("#deleteWarningBtnYes").on("click", function() {
+        $("#maxSubject .subject").remove();
+        $("#deleteWarning").css("display", "none");
+        updateSubjectIDs();
+        toggleWindows();
+    });
+    $("#deleteWarningBtnNo").on("click", function() {
+        // Hide the delete warning
+        $("#deleteWarning").css("display", "none");
     });
 }
 
