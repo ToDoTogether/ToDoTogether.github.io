@@ -16,7 +16,7 @@
     margin: 0 32px;
 }
 
-#allSubjects .subject:not(:last-child) {
+#allSubjects div.subject:not(:last-child) {
     margin-bottom: 24px;
 }
 
