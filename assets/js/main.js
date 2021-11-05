@@ -34,9 +34,20 @@ function bindOnClickToButtons() {
             // Delete all empty checkboxes
             $("#maxSubject .subject .unchecked, #maxSubject .subject .checked").children().each(function() {
                 if ($(this).children("label").text() == "") {
-                    $(this).remove();
+                    if ($("#maxSubject .subject .unchecked, #maxSubject .subject .checked").children().length > 1) {
+                        $(this).remove();
+                    }
                 }
             });
+            // Adapt the hr styling
+            checkStyleOfEntries($("#maxSubject .subject hr"));
+
+            // If there is only one empty checkbox, make sure it is unchecked
+            let entries = $("#maxSubject .subject .unchecked, #maxSubject .subject .checked").children();
+            if (entries.children("label").text() == "" && entries.length == 1) {
+                entries.children("input").prop('checked', false);
+                $("#maxSubject .subject .unchecked").append(entries);
+            }
 
             // Update the stats for the subject
             let checkedCount = $("#maxSubject .checked").children("span").length;
