@@ -1,36 +1,33 @@
 #deleteWarning {
-    background-color: var(--primaryColor);
-    width: 280px;
-    height: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    position: fixed;
-    top: calc(50% - 50px - 16px);
-    left: calc(50% - 140px - 16px);
-    border-radius: 8px;
-    padding: 16px;
-}
-
-#deleteWarning h2 {
-    color: var(--secondaryColor);
-    font-family: var(--secondaryFont);
-}
-
-#deleteWarning span {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    height: 35px;
-}
-
-#deleteWarning span button {
-    width: 33%;
+    width: 100%;
     height: 100%;
-    font-family: var(--secondaryFont);
-    border-radius: 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#deleteWarning span button:first-child {
-    margin-right: 16px;
+#deleteWarningBox {
+    background-color: var(--primaryColor);
+    padding: 18px;
+    border-radius: 8px;
+    max-width: 85%;
+}
+
+#deleteWarningBox h2 {
+    font-family: var(--secondaryFont);
+    border-radius: 6px;
+    color: var(--secondaryColor);
+    margin-bottom: 12px;
+}
+
+#deleteWarningBox button {
+    width: 82px;
+    height: 28px;
+}
+
+#deleteWarningBox button:first-child {
+    margin-right: 8px;
 }

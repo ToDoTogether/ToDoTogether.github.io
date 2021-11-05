@@ -118,9 +118,13 @@ function bindOnClickToButtons() {
 
     // Bind function to delete button to delete single subjects
     $("#delSubjectBtn").on("click", function() {
-        $("#maxSubject .subject").remove();
-        updateSubjectIDs();
-        toggleWindows();
+
+        // Display the delete warning
+        $("#deleteWarning").css("display", "flex");
+
+        // $("#maxSubject .subject").remove();
+        // updateSubjectIDs();
+        // toggleWindows();
     });
 }
 
