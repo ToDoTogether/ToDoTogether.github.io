@@ -92,21 +92,14 @@ function bindOnClickToButtons() {
         toggleWindows();
     });
 
-    // Bind function to color palette icon to change color of subject
-    $("#changeColorBtn").on("click", function() {
-        // Display the color palette
-        $("#colorPalette").css("display", "flex");
-
-        // Bind return function to maxSubject
-        setTimeout(function() {
-            $("#maxSubject").on("click", function() {
-                // Hide the color palette
-                $("#colorPalette").css("display", "none");
-
-                // Unbin click from maxSubject
-                $("#maxSubject").unbind("click");
-            });
-        }, 10);
+    // Bind return function to maxSubject
+    $("#maxSubject").on("click", function(e) {
+        if (e.target.id == "changeColorBtn" && $("#colorPalette").css("display") == "none") {
+            $("#colorPalette").css("display", "flex");
+        }
+        else if ($("#colorPalette").css("display") == "flex") {
+            $("#colorPalette").css("display", "none");
+        }
     });
 
     // Bind a function to every color in color palette
