@@ -118,7 +118,9 @@ function bindOnClickToButtons() {
 
     // Bind function to delete button to delete single subjects
     $("#delSubjectBtn").on("click", function() {
-        console.log("delete subject");
+        $("#maxSubject .subject").remove();
+        updateSubjectIDs();
+        toggleWindows();
     });
 }
 
