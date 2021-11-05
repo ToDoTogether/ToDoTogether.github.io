@@ -12,6 +12,9 @@ function createSubject() {
         if ($("#maxSubject").css("display") == "none") {
             toggleWindows();
             $(div).appendTo($("#maxSubject"));
+
+            // Change color of maxSubject to match subject
+            $("#maxSubject").css("background-color", $(div).css("background-color"));
         }
     })
 

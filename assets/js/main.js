@@ -15,6 +15,9 @@ function bindOnClickToButtons() {
         let subject = createSubject();
         $("#maxSubject").append(subject);
 
+        // Make sure inital background color is white
+        $("#maxSubject").css("background-color", "white");
+
         // Change the screens
         toggleWindows();
     });
@@ -110,6 +113,7 @@ function bindOnClickToButtons() {
     $("#colorPalette").children().on("click", function(e) {
         let color = $(e.target).css("color");
         $("#maxSubject").css("background-color", color);
+        $("#maxSubject .subject").css("background-color", color);
     });
 
     // Bind function to delete button to delete single subjects

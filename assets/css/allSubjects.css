@@ -14,7 +14,6 @@
     box-shadow: 1px 1px 3px #aaa;
     padding: 18px 24px;
     margin: 0 32px;
-    background-color: #efefef;
 }
 
 #allSubjects .subject:not(:last-child) {
