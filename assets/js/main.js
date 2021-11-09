@@ -112,7 +112,8 @@ function bindOnClickToButtons() {
     // Bind function to delete button to delete single subjects
     $("#delSubjectBtn").on("click", function() {
         // Display the delete warning
-        $("#deleteWarning").css("display", "flex");
+        // $("#deleteWarning").css("display", "flex");
+        $("#deleteWarning").fadeIn(200);
     });
 
     // Bind function to the buttons in the delete warning
@@ -124,7 +125,8 @@ function bindOnClickToButtons() {
     });
     $("#deleteWarningBtnNo").on("click", function() {
         // Hide the delete warning
-        $("#deleteWarning").css("display", "none");
+        // $("#deleteWarning").css("display", "none");
+        $("#deleteWarning").fadeOut(200);
     });
 }
 
