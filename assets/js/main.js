@@ -7,7 +7,6 @@ function main() {
     bindOnClickToButtons();
 }
 
-
 function fetchDataJSON() {
     // Get the saved data from json file
     $.getJSON(url + "/latest").done(function(data) {
