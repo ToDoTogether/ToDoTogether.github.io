@@ -1,3 +1,6 @@
+url = "https://api.jsonbin.io/b/618aa8a7820eda3cc81a6f0f";
+JSONdata = null;
+
 function main() {
     fetchDataJSON();
     hideElementsAtStart();
@@ -6,12 +9,11 @@ function main() {
 
 function fetchDataJSON() {
     // Get the saved data from json file
-    url = "https://api.jsonbin.io/b/618aa8a7820eda3cc81a6f0f";
     $.getJSON(url + "/latest", function(data) {
+        JSONdata = data;
         if (data["empty"] == false) {
             for (let i = 1; i <= Object.keys(data["subjects"]).length; i++) {
                 sub = data["subjects"]["sub"+i];
-
                 // Create subject
                 let subject = createSubject();
 
@@ -29,16 +31,16 @@ function fetchDataJSON() {
                 }
 
                 // Append checked items
-                for (let i = 0; i < checkedCount; i++) {
-                    let checkbox = createCheckbox(hr, true);
-                    $(checkbox).children("label").text(sub["checkedItems"][i]);
+                for (let j = 0; j < checkedCount; j++) {
+                    let checkbox = createCheckbox(hr, true, ("sub"+i));
+                    $(checkbox).children("label").text(sub["checkedItems"][j]);
                     $(subject).children(".checked").append(checkbox);
                 }
 
                 // Append unchecked items
-                for (let i = 0; i < uncheckedCount; i++) {
-                    let checkbox = createCheckbox(hr, false);
-                    $(checkbox).children("label").text(sub["uncheckedItems"][i]);
+                for (let j = 0; j < uncheckedCount; j++) {
+                    let checkbox = createCheckbox(hr, false, ("sub"+i));
+                    $(checkbox).children("label").text(sub["uncheckedItems"][j]);
                     $(subject).children(".unchecked").append(checkbox);
                 }
 
@@ -108,6 +110,31 @@ function bindOnClickToButtons() {
 
             // Update the stats for the subject
             updateStats($("#maxSubject .subject").attr("id"));
+
+            // Save data in json file
+            let req = new XMLHttpRequest();
+            req.open("PUT", url, true);
+            req.setRequestHeader("Content-Type", "application/json");
+
+            // Modify the data for the subject
+            let id = $("#maxSubject .subject").attr("id");
+            JSONdata["subjects"][id]["title"] = $("#maxSubject .subject h2").text();
+            JSONdata["subjects"][id]["color"] = $("#maxSubject .subject").css("background-color");
+
+            JSONdata["subjects"][id]["checkedItems"] = []
+            for (let i = 0; i < $("#maxSubject .subject .checked").children().length; i++) {
+                let item = $("#maxSubject .subject .checked").children("span")[i];
+                JSONdata["subjects"][id]["checkedItems"].push($(item).children("label").text());
+            };
+
+            JSONdata["subjects"][id]["uncheckedItems"] = []
+            for (let i = 0; i < $("#maxSubject .subject .unchecked").children().length; i++) {
+                let item = $("#maxSubject .subject .unchecked").children("span")[i];
+                JSONdata["subjects"][id]["uncheckedItems"].push($(item).children("label").text());
+            };
+
+            // Update the json file
+            req.send(JSON.stringify(JSONdata));
 
             // Get all subjects
             subjects = $("#allSubjects").children("div");

@@ -38,7 +38,7 @@ function createSubject() {
     let divChecked = document.createElement("div");
     $(divChecked).addClass("checked");
 
-    let checkbox = createCheckbox(hr, false);
+    let checkbox = createCheckbox(hr, false, $(div).attr("id"));
 
     // Append the elements in the correct order
     $(divUnchecked).append(checkbox);
@@ -47,7 +47,7 @@ function createSubject() {
     return div;
 }
 
-function createCheckbox(hr, checked) {
+function createCheckbox(hr, checked, id) {
     let span = document.createElement("span");
 
     let input = document.createElement("input");
@@ -64,7 +64,7 @@ function createCheckbox(hr, checked) {
         }
 
         // Check for styling updates
-        checkStyleOfEntries(hr);
+        checkStyleOfEntries(hr, id);
     });
     if (checked) {
         input.checked = true;
@@ -89,7 +89,7 @@ function createCheckbox(hr, checked) {
             }
 
             // Insert the new checkbox
-            let newCheckbox = createCheckbox(hr, checked);
+            let newCheckbox = createCheckbox(hr, checked, id);
             $(span).after(newCheckbox);
 
             // Scroll down (if necessary) to the checkbox
@@ -118,7 +118,7 @@ function createCheckbox(hr, checked) {
 
         if (checkedCount + uncheckedCount > 1) {
             $(span).remove();
-            checkStyleOfEntries(hr);
+            checkStyleOfEntries(hr, id);
         }
     })
 
@@ -129,7 +129,6 @@ function createCheckbox(hr, checked) {
 }
 
 function checkStyleOfEntries(hr, id) {
-    console.log(hr, id);
     let checkedCount = $("#" + id + " .checked").children("span").length;
     let uncheckedCount = $("#" + id + " .unchecked").children("span").length;
 
