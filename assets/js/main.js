@@ -1,6 +1,60 @@
 function main() {
+    fetchDataJSON();
     hideElementsAtStart();
     bindOnClickToButtons();
+}
+
+function fetchDataJSON() {
+    // Get the saved data from json file
+    url = "https://api.jsonbin.io/b/618aa8a7820eda3cc81a6f0f";
+    $.getJSON(url + "/latest", function(data) {
+        if (data["empty"] == false) {
+            for (let i = 1; i <= Object.keys(data["subjects"]).length; i++) {
+                sub = data["subjects"]["sub"+i];
+
+                // Create subject
+                let subject = createSubject();
+
+                // Fill in the data
+                $(subject).children("h2").text(sub["title"]);
+                $(subject).css("background-color", sub["color"]);
+
+                let hr = $(subject).children("hr");
+                let checkedCount = sub["checkedItems"].length;
+                let uncheckedCount = sub["uncheckedItems"].length;
+
+                // Delete empy entry if there is at least one item
+                if (checkedCount > 0 || uncheckedCount > 0) {
+                    $(subject).children(".unchecked").children("span").remove();
+                }
+
+                // Append checked items
+                for (let i = 0; i < checkedCount; i++) {
+                    let checkbox = createCheckbox(hr, true);
+                    $(checkbox).children("label").text(sub["checkedItems"][i]);
+                    $(subject).children(".checked").append(checkbox);
+                }
+
+                // Append unchecked items
+                for (let i = 0; i < uncheckedCount; i++) {
+                    let checkbox = createCheckbox(hr, false);
+                    $(checkbox).children("label").text(sub["uncheckedItems"][i]);
+                    $(subject).children(".unchecked").append(checkbox);
+                }
+
+                // Display the subject
+                $("#allSubjects").append(subject);
+
+                // Adapt the hr styling
+                checkStyleOfEntries($(subject).children("hr"), ("sub"+i));
+
+                // Update the stats of the subject
+                updateStats("sub"+i);
+            }
+        }
+    }).fail(function() {
+        // TODO: handle case if json file could not be loaded
+    });
 }
 
 function hideElementsAtStart() {
@@ -43,20 +97,17 @@ function bindOnClickToButtons() {
                 }
             });
             // Adapt the hr styling
-            checkStyleOfEntries($("#maxSubject .subject hr"));
+            checkStyleOfEntries($("#maxSubject .subject hr"), $("#maxSubject .subject").attr("id"));
 
             // If there is only one empty checkbox, make sure it is unchecked
             let entries = $("#maxSubject .subject .unchecked, #maxSubject .subject .checked").children();
             if (entries.children("label").text() == "" && entries.length == 1) {
                 entries.children("input").prop('checked', false);
                 $("#maxSubject .subject .unchecked").append(entries);
-            }
+            };
 
             // Update the stats for the subject
-            let checkedCount = $("#maxSubject .checked").children("span").length;
-            let uncheckedCount = $("#maxSubject .unchecked").children("span").length;
-            let newText = `Erledigt: ${checkedCount} | Ausstehend: ${uncheckedCount}`;
-            $("#maxSubject .subject h4").text(newText);
+            updateStats($("#maxSubject .subject").attr("id"));
 
             // Get all subjects
             subjects = $("#allSubjects").children("div");

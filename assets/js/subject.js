@@ -128,9 +128,10 @@ function createCheckbox(hr, checked) {
     return span;
 }
 
-function checkStyleOfEntries(hr) {
-    let checkedCount = $("#maxSubject .checked").children("span").length;
-    let uncheckedCount = $("#maxSubject .unchecked").children("span").length;
+function checkStyleOfEntries(hr, id) {
+    console.log(hr, id);
+    let checkedCount = $("#" + id + " .checked").children("span").length;
+    let uncheckedCount = $("#" + id + " .unchecked").children("span").length;
 
     // Display the horizontal line only when at least one of both is checked
     if (checkedCount == 0 || uncheckedCount == 0) {
@@ -138,4 +139,17 @@ function checkStyleOfEntries(hr) {
     } else {
         $(hr).removeClass("hide").addClass("show");
     }
+}
+
+function updateStats(id) {
+    let checkedCount = $("#" + id + " .checked").children("span").length;
+    let uncheckedCount = $("#" + id + " .unchecked").children("span").length;
+
+    // Make sure the empty one is not counted
+    if (uncheckedCount == 1 && $("#" + id + " .unchecked").children("span").children("label").text() == "") {
+        uncheckedCount -= 1;
+    }
+
+    let newText = `Erledigt: ${checkedCount} | Ausstehend: ${uncheckedCount}`;
+    $("#" + id + " h4").text(newText);
 }
