@@ -1,4 +1,4 @@
-url = "https://api.jsonbin.io/b/618aa8a7820eda3cc81a6f0f";
+url = "https://api.jsonbin.io/b/618ac413763da443125e1a3b";
 JSONdata = null;
 
 function main() {
@@ -7,9 +7,10 @@ function main() {
     bindOnClickToButtons();
 }
 
+
 function fetchDataJSON() {
     // Get the saved data from json file
-    $.getJSON(url + "/latest", function(data) {
+    $.getJSON(url + "/latest").done(function(data) {
         JSONdata = data;
         if (data["empty"] == "0") {
             for (let i = 1; i <= Object.keys(data["subjects"]).length; i++) {
@@ -201,8 +202,8 @@ function bindOnClickToButtons() {
     // Bind function to delete button to delete single subjects
     $("#delSubjectBtn").on("click", function() {
         // Display the delete warning
-        // $("#deleteWarning").css("display", "flex");
-        $("#deleteWarning").fadeIn(200);
+        $("#deleteWarning").css("display", "flex");
+        // $("#deleteWarning").fadeIn(200);
     });
 
     // Bind function to the buttons in the delete warning
@@ -230,8 +231,8 @@ function bindOnClickToButtons() {
     });
     $("#deleteWarningBtnNo").on("click", function() {
         // Hide the delete warning
-        // $("#deleteWarning").css("display", "none");
-        $("#deleteWarning").fadeOut(200);
+        $("#deleteWarning").css("display", "none");
+        // $("#deleteWarning").fadeOut(200);
     });
 }
 
@@ -253,14 +254,20 @@ function updateSubjectIDs() {
     subjectCount -= 1;
 
     // Iterate through all the subjects
-    counter = 1;
-    subjects = $("#allSubjects").children("div");
+    let counter = 1;
+    let subjects = $("#allSubjects").children("div");
     for (let i = 0; i < subjects.length; i++) {
         $(subjects[i]).attr("id", `sub${counter}`);
-        let oldKey = Object.keys(JSONdata["subjects"])[i];
-        delete Object.assign(JSONdata["subjects"], {["sub"+counter]: JSONdata["subjects"][oldKey] })[oldKey];
         counter += 1;
     }
+
+    // Update names in json file
+    let subs = JSONdata["subjects"];
+    let newSubs = {}
+    for (let i = 1; i <= Object.keys(subs).length; i++) {
+        newSubs["sub"+i] = Object.values(subs)[i-1];
+    }
+    JSONdata["subjects"] = newSubs;
 }
 
 $(document).ready(main);
