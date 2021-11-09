@@ -11,7 +11,7 @@ function fetchDataJSON() {
     // Get the saved data from json file
     $.getJSON(url + "/latest", function(data) {
         JSONdata = data;
-        if (data["empty"] == false) {
+        if (data["empty"] == "0") {
             for (let i = 1; i <= Object.keys(data["subjects"]).length; i++) {
                 sub = data["subjects"]["sub"+i];
                 // Create subject
@@ -116,8 +116,19 @@ function bindOnClickToButtons() {
             req.open("PUT", url, true);
             req.setRequestHeader("Content-Type", "application/json");
 
-            // Modify the data for the subject
+            // Check if it is the first element in the json file
+            if (JSONdata["empty"] == "1") {
+                JSONdata["empty"] = "0";
+                JSONdata["subjects"] = {};
+            }
+
+            // If the subject is new, create a new dict in json file
             let id = $("#maxSubject .subject").attr("id");
+            if (!Object.keys(JSONdata["subjects"]).includes(id)) {
+                JSONdata["subjects"][id] = {};
+            }
+
+            // Modify the data for the subject
             JSONdata["subjects"][id]["title"] = $("#maxSubject .subject h2").text();
             JSONdata["subjects"][id]["color"] = $("#maxSubject .subject").css("background-color");
 
@@ -196,10 +207,26 @@ function bindOnClickToButtons() {
 
     // Bind function to the buttons in the delete warning
     $("#deleteWarningBtnYes").on("click", function() {
+        let req = new XMLHttpRequest();
+        req.open("PUT", url, true);
+        req.setRequestHeader("Content-Type", "application/json");
+
+        // Modify the data for the subject
+        delete JSONdata["subjects"][$("#maxSubject .subject").attr("id")];
+
+        // Check if there are any subjects left
+        if (Object.keys(JSONdata["subjects"]).length == 0) {
+            JSONdata["empty"] = "1";
+        };
+
+        // Delete entry and switch to main screen
         $("#maxSubject .subject").remove();
         $("#deleteWarning").css("display", "none");
-        updateSubjectIDs();
         toggleWindows();
+        updateSubjectIDs();
+
+        // Update the json file
+        req.send(JSON.stringify(JSONdata));
     });
     $("#deleteWarningBtnNo").on("click", function() {
         // Hide the delete warning
@@ -230,6 +257,8 @@ function updateSubjectIDs() {
     subjects = $("#allSubjects").children("div");
     for (let i = 0; i < subjects.length; i++) {
         $(subjects[i]).attr("id", `sub${counter}`);
+        let oldKey = Object.keys(JSONdata["subjects"])[i];
+        delete Object.assign(JSONdata["subjects"], {["sub"+counter]: JSONdata["subjects"][oldKey] })[oldKey];
         counter += 1;
     }
 }
