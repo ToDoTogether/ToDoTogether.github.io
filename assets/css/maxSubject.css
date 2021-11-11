@@ -27,7 +27,6 @@
 #maxSubject .subject h2:empty::before {
     content: attr(data-placeholder);
     color: var(--disabledColor);
-    font-style: italic;
 }
 
 #maxSubject .subject span {
@@ -56,7 +55,6 @@
 #maxSubject .subject label:empty::before {
     content: attr(data-placeholder);
     color: var(--disabledColor);
-    font-style: italic;
 }
 
 /* --- Navigation Bar --- */

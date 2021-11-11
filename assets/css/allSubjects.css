@@ -23,7 +23,8 @@
 #allSubjects .subject h2 {
     font-size: 24px;
     font-family: var(--primaryFont);
-    margin-bottom: 8px;
+    margin-bottom: 4px;
+    line-height: 1.3;
 }
 
 #allSubjects .subject h2:empty::before {

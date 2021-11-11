@@ -21,12 +21,6 @@ function createSubject() {
     let h2 = document.createElement("h2");
     $(h2).attr("contenteditable", "true");
     $(h2).attr("data-placeholder", "Unbekannter Titel");
-    $(h2).on("keydown", function(e) {
-        // Prevent the user from hitting enter
-        if (e.keyCode == 13) {
-            e.preventDefault();
-        }
-    });
 
     let h4 = document.createElement("h4");
 
